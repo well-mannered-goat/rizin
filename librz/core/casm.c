@@ -94,8 +94,9 @@ static const char *has_esil(RzCore *core, const char *name) {
 	return "___";
 }
 
-RZ_API RzCmdStatus rz_core_asm_plugin_print(RzCore *core, RzAsmPlugin *ap, const char *arch, RzCmdStateOutput *state, const char *license) {
-	const char *feat2, *feat;
+RZ_API RzCmdStatus rz_core_asm_plugin_print(RzCore *core, RzAsmPlugin *ap, RzCmdStateOutput *state, const char *license, const char *flags) {
+	const char *feat2;
+	char feat[6] = "__";
 	char bits[32];
 	PJ *pj = state->d.pj;
 	bits[0] = 0;
@@ -120,17 +121,24 @@ RZ_API RzCmdStatus rz_core_asm_plugin_print(RzCore *core, RzAsmPlugin *ap, const
 			strcat(bits, "64");
 		}
 	}
-	feat = "__";
+
 	if (ap->assemble && ap->disassemble) {
-		feat = "ad";
+		strcpy(feat, "ad");
 	}
 	if (ap->assemble && !ap->disassemble) {
-		feat = "a_";
+		strcpy(feat, "a_");
 	}
 	if (!ap->assemble && ap->disassemble) {
-		feat = "_d";
+		strcpy(feat, "_d");
 	}
 	feat2 = has_esil(core, ap->name);
+	strcat(feat, feat2);
+
+	for (int i = 0; flags && flags[i] != '\0'; i++) {
+		if (strchr(feat, flags[i]) == NULL) {
+			return RZ_CMD_STATUS_OK;
+		}
+	}
 	switch (state->mode) {
 	case RZ_OUTPUT_MODE_QUIET: {
 		rz_cons_println(ap->name);
@@ -146,8 +154,8 @@ RZ_API RzCmdStatus rz_core_asm_plugin_print(RzCore *core, RzAsmPlugin *ap, const
 		break;
 	}
 	case RZ_OUTPUT_MODE_STANDARD: {
-		rz_cons_printf("%s%s %-10s %-11s %-7s %s",
-			feat, feat2, bits, ap->name, license, ap->desc);
+		rz_cons_printf("%s %-10s %-11s %-7s %s",
+			feat, bits, ap->name, license, ap->desc);
 		if (ap->author) {
 			rz_cons_printf(" (by %s)", ap->author);
 		}
@@ -165,7 +173,7 @@ RZ_API RzCmdStatus rz_core_asm_plugin_print(RzCore *core, RzAsmPlugin *ap, const
 	return RZ_CMD_STATUS_OK;
 }
 
-RZ_API RzCmdStatus rz_core_asm_plugins_print(RZ_NONNULL RZ_BORROW RzCore *core, RZ_NULLABLE const char *arch, RZ_OUT RzCmdStateOutput *state) {
+RZ_API RzCmdStatus rz_core_asm_plugins_print(RZ_NONNULL RZ_BORROW RzCore *core, RZ_NULLABLE const char *arch, RZ_OUT RzCmdStateOutput *state, RZ_NULLABLE const char *flags) {
 	rz_return_val_if_fail(core && state, RZ_CMD_STATUS_ERROR);
 	int i;
 	RzAsm *a = core->rasm;
@@ -197,7 +205,7 @@ RZ_API RzCmdStatus rz_core_asm_plugins_print(RZ_NONNULL RZ_BORROW RzCore *core, 
 			const char *license = ap->license
 				? ap->license
 				: "unknown";
-			status = rz_core_asm_plugin_print(core, ap, arch, state, license);
+			status = rz_core_asm_plugin_print(core, ap, state, license, flags);
 			if (status != RZ_CMD_STATUS_OK) {
 				rz_iterator_free(iter);
 				rz_list_free(plugin_list);

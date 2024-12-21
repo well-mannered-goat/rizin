@@ -414,7 +414,7 @@ static bool cb_asmcpu(void *user, void *data) {
 		/* print verbose help instead of plain option listing */
 		RzCmdStateOutput state = { 0 };
 		rz_cmd_state_output_init(&state, RZ_OUTPUT_MODE_STANDARD);
-		rz_core_asm_plugins_print(core, rz_config_get(core->config, "asm.arch"), &state);
+		rz_core_asm_plugins_print(core, rz_config_get(core->config, "asm.arch"), &state, NULL);
 		rz_cmd_state_output_print(&state);
 		rz_cmd_state_output_fini(&state);
 		return 0;
@@ -500,7 +500,7 @@ static bool cb_asmarch(void *user, void *data) {
 			/* print more verbose help instead of plain option values */
 			RzCmdStateOutput state = { 0 };
 			rz_cmd_state_output_init(&state, RZ_OUTPUT_MODE_STANDARD);
-			rz_core_asm_plugins_print(core, NULL, &state);
+			rz_core_asm_plugins_print(core, NULL, &state, NULL);
 			rz_cmd_state_output_print(&state);
 			rz_cmd_state_output_fini(&state);
 			return false;

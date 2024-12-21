@@ -550,6 +550,7 @@ static const RzCmdDescArg sdb_namespace_dump_args[3];
 static const RzCmdDescArg sdb_namespace_load_args[3];
 static const RzCmdDescArg plugins_load_args[2];
 static const RzCmdDescArg plugins_unload_args[2];
+static const RzCmdDescArg plugins_asm_print_args[2];
 static const RzCmdDescArg plugins_debug_print_args[2];
 static const RzCmdDescArg plugins_io_print_args[2];
 static const RzCmdDescArg open_args[4];
@@ -12160,6 +12161,13 @@ static const RzCmdDescHelp plugins_lang_print_help = {
 };
 
 static const RzCmdDescArg plugins_asm_print_args[] = {
+	{
+		.name = "features",
+		.type = RZ_CMD_ARG_TYPE_STRING,
+		.flags = RZ_CMD_ARG_FLAG_LAST,
+		.optional = true,
+
+	},
 	{ 0 },
 };
 static const RzCmdDescHelp plugins_asm_print_help = {
