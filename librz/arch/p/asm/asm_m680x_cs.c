@@ -79,6 +79,23 @@ static int m680x_disassemble(RzAsm *a, RzAsmOp *op, const ut8 *buf, int len) {
 	return op->size;
 }
 
+char **m680x_cpu_descriptions() {
+	static char *cpu_desc[] = {
+		"6800", "Motorola 6800: 8-bit microprocessor, one of the earliest commercially successful microprocessors.",
+		"6801", "Motorola 6801: Enhanced version of the 6800 with additional features like on-chip RAM and timers.",
+		"6805", "Motorola 6805: 8-bit microcontroller family designed for embedded systems and low-power applications.",
+		"6808", "Motorola 6808: Variant of the 6800 microprocessor with simplified features for cost-sensitive applications.",
+		"6809", "Motorola 6809: Advanced 8-bit microprocessor with support for position-independent code and rich instruction set.",
+		"6811", "Motorola 6811: 8-bit microcontroller with integrated peripherals, widely used in automotive and industrial applications.",
+		"cpu12", "Motorola CPU12: 16-bit microcontroller family, successor to the 6811, with enhanced performance and features.",
+		"6301", "Hitachi 6301: 8-bit microcontroller compatible with the Motorola 6800, used in embedded systems.",
+		"6309", "Hitachi 6309: Enhanced version of the 6809 with additional instructions and improved performance.",
+		"hcs08", "Freescale HCS08: 8-bit microcontroller family based on the 6805, designed for low-power and cost-sensitive applications.",
+		0
+	};
+	return cpu_desc;
+}
+
 RzAsmPlugin rz_asm_plugin_m680x_cs = {
 	.name = "m680x",
 	.cpus = "6800,6801,6805,6808,6809,6811,cpu12,6301,6309,hcs08",
@@ -91,6 +108,7 @@ RzAsmPlugin rz_asm_plugin_m680x_cs = {
 	.fini = m680x_asm_fini,
 	.disassemble = &m680x_disassemble,
 	.mnemonics = m680x_asm_mnemonics,
+	.get_cpu_desc = m680x_cpu_descriptions,
 };
 
 #ifndef RZ_PLUGIN_INCORE

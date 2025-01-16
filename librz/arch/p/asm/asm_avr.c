@@ -37,6 +37,28 @@ static int assemble(RzAsm *a, RzAsmOp *ao, const char *str) {
 	return (int)written;
 }
 
+char **avr_cpu_descriptions() {
+	static char *cpu_desc[] = {
+		"ATmega8", "8-bit AVR microcontroller with 8KB Flash, 1KB SRAM, and 512B EEPROM",
+		"ATmega1280", "8-bit AVR microcontroller with 128KB Flash, 8KB SRAM, and 4KB EEPROM, ideal for complex embedded systems",
+		"ATmega1281", "8-bit AVR microcontroller with 128KB Flash, 8KB SRAM, and enhanced peripherals for industrial applications",
+		"ATmega16", "8-bit AVR microcontroller with 16KB Flash, 1KB SRAM, and 512B EEPROM, suitable for general-purpose applications",
+		"ATmega168", "8-bit AVR microcontroller with 16KB Flash, 1KB SRAM, and 512B EEPROM, widely used in Arduino projects",
+		"ATmega2560", "High-performance 8-bit AVR microcontroller with 256KB Flash, 8KB SRAM, and 4KB EEPROM, popular in advanced Arduino boards",
+		"ATmega2561", "8-bit AVR microcontroller with 256KB Flash, 8KB SRAM, and enhanced peripherals for embedded systems",
+		"ATmega328p", "8-bit AVR microcontroller with 32KB Flash, 2KB SRAM, and 1KB EEPROM, widely used in Arduino Uno",
+		"ATmega32u4", "8-bit AVR microcontroller with 32KB Flash, 2.5KB SRAM, and USB support, ideal for HID devices",
+		"ATmega48", "8-bit AVR microcontroller with 4KB Flash, 512B SRAM, and 256B EEPROM, designed for cost-sensitive applications",
+		"ATmega640", "8-bit AVR microcontroller with 64KB Flash, 4KB SRAM, and 2KB EEPROM, suitable for advanced embedded systems",
+		"ATmega88", "8-bit AVR microcontroller with 8KB Flash, 1KB SRAM, and 512B EEPROM, used in compact applications",
+		"ATxmega128a4u", "High-performance 8-bit AVR microcontroller with 128KB Flash, 8KB SRAM, and USB support for modern applications",
+		"ATTiny48", "8-bit AVR microcontroller with 4KB Flash, 512B SRAM, and compact design for low-power devices",
+		"ATTiny88", "8-bit AVR microcontroller with 8KB Flash, 512B SRAM, and compact design for efficient embedded solutions",
+		0
+	};
+	return cpu_desc;
+}
+
 RzAsmPlugin rz_asm_plugin_avr = {
 	.name = "avr",
 	.arch = "avr",
@@ -61,5 +83,6 @@ RzAsmPlugin rz_asm_plugin_avr = {
 		"ATmega88,"
 		"ATxmega128a4u,"
 		"ATTiny48,"
-		"ATTiny88,"
+		"ATTiny88,",
+	.get_cpu_desc = avr_cpu_descriptions,
 };

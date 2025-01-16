@@ -103,6 +103,14 @@ static bool fini(void *u) {
 	return true;
 }
 
+char **tricore_cpu_descriptions() {
+	static char *cpu_desc[] = {
+		"tricore", "TriCore: A 32-bit and 64-bit architecture developed by Infineon, designed for automotive, industrial, and embedded applications with a focus on real-time processing and high performance.",
+		0
+	};
+	return cpu_desc;
+}
+
 RzAsmPlugin rz_asm_plugin_tricore_cs = {
 	.name = "tricore",
 	.arch = "tricore",
@@ -115,6 +123,7 @@ RzAsmPlugin rz_asm_plugin_tricore_cs = {
 	.disassemble = &disassemble,
 	.init = &init,
 	.fini = &fini,
+	.get_cpu_desc = tricore_cpu_descriptions,
 };
 
 #ifndef RZ_PLUGIN_INCORE

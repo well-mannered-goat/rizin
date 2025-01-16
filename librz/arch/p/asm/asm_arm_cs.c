@@ -285,6 +285,18 @@ static char *mnemonics(RzAsm *a, int id, bool json) {
 	return rz_strbuf_drain(buf);
 }
 
+char **arm_cpu_descriptions() {
+	static char *cpu_desc[] = {
+		"v8", "ARMv8 architecture, offering 64-bit processing, enhanced security, and power efficiency.",
+		"cortexm", "ARM Cortex-M series, designed for low-power, real-time embedded systems.",
+		"arm1176", "ARM1176JZ(F)-S, a 32-bit RISC processor supporting ARMv6 architecture with multimedia enhancements.",
+		"cortexA72", "High-performance ARM Cortex-A72 processor, optimized for mobile and embedded systems.",
+		"cortexA8", "ARM Cortex-A8, a 32-bit processor offering high efficiency and performance for consumer electronics.",
+		0
+	};
+	return cpu_desc;
+}
+
 RzAsmPlugin rz_asm_plugin_arm_cs = {
 	.name = "arm",
 	.desc = "Capstone ARM disassembler",
@@ -300,6 +312,7 @@ RzAsmPlugin rz_asm_plugin_arm_cs = {
 	.assemble = &assemble,
 	.init = &arm_init,
 	.fini = &arm_fini,
+	.get_cpu_desc = arm_cpu_descriptions,
 #if 0
 	// arm32 and arm64
 	"crypto,databarrier,divide,fparmv8,multpro,neon,t2extractpack,"

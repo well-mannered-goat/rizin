@@ -5500,9 +5500,8 @@ RZ_IPI RzCmdStatus rz_list_plugins_handler(RzCore *core, int argc, const char **
 	return rz_core_asm_plugins_print(core, NULL, state, NULL);
 }
 
-RZ_IPI RzCmdStatus rz_list_cpu_details_handler(RzCore *core, int argc, const char **argv){
-	printf("Hello");
-	return RZ_CMD_STATUS_OK;
+RZ_IPI RzCmdStatus rz_list_cpu_details_handler(RzCore *core, int argc, const char **argv) {
+	return rz_core_cpu_descs_print(core, argv[1]);
 }
 
 RZ_IPI RzCmdStatus rz_analyse_name_handler(RzCore *core, int argc, const char **argv, RzCmdStateOutput *state) {

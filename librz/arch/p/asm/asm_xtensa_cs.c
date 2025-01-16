@@ -29,6 +29,16 @@ beach:
 	return -1;
 }
 
+char **xtensa_cpu_descriptions() {
+	static char *cpu_desc[] = {
+		"esp32", "32-bit microcontroller with Wi-Fi and Bluetooth capabilities, designed for high-performance applications.",
+		"esp32s2", "32-bit microcontroller with Wi-Fi and USB OTG support, optimized for low-power and IoT applications.",
+		"esp8266", "Low-cost 32-bit microcontroller with Wi-Fi support, commonly used in IoT projects and embedded systems.",
+		0
+	};
+	return cpu_desc;
+}
+
 RzAsmPlugin rz_asm_plugin_xtensa_cs = {
 	.name = "xtensa",
 	.license = "LGPL3",
@@ -41,4 +51,5 @@ RzAsmPlugin rz_asm_plugin_xtensa_cs = {
 	.disassemble = asm_xtensa_disassemble,
 	.init = &xtensa_init,
 	.fini = &xtensa_fini,
+	.get_cpu_desc = xtensa_cpu_descriptions,
 };

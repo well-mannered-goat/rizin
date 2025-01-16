@@ -61,6 +61,17 @@ static char *tms320_mnemonics(RzAsm *a, int id, bool json) {
 	return tms320_c64x_mnemonics(a, id, json, ctx->c64x);
 }
 
+char **tms320_cpu_descriptions() {
+	static char *cpu_desc[] = {
+		"c54x", "Texas Instruments TMS320C54x: 16-bit DSP architecture optimized for signal processing tasks.",
+		"c55x", "Texas Instruments TMS320C55x: 16-bit DSP family designed for low-power, high-performance embedded applications.",
+		"c55x+", "Texas Instruments TMS320C55x+: Enhanced version of the C55x DSP, offering improved performance and features.",
+		"c64x", "Texas Instruments TMS320C64x: 32-bit DSP architecture with high-performance features for multimedia and communications.",
+		0
+	};
+	return cpu_desc;
+}
+
 RzAsmPlugin rz_asm_plugin_tms320 = {
 	.name = "tms320",
 	.arch = "tms320",
@@ -73,4 +84,5 @@ RzAsmPlugin rz_asm_plugin_tms320 = {
 	.fini = tms320_fini,
 	.disassemble = &tms320_disassemble,
 	.mnemonics = tms320_mnemonics,
+	.get_cpu_desc = tms320_cpu_descriptions,
 };

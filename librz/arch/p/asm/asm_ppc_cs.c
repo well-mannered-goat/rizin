@@ -116,6 +116,17 @@ static int ppc_disassemble(RzAsm *a, RzAsmOp *op, const ut8 *buf, int len) {
 	return op->size;
 }
 
+char **ppc_cpu_descriptions() {
+	static char *cpu_desc[] = {
+		"ppc", "PowerPC: High-performance RISC architecture used in embedded systems, servers, and workstations.",
+		"vle", "Variable Length Encoding (VLE): Compact instruction set extension for PowerPC, optimizing code size.",
+		"ps", "Paired Single (PS): SIMD extension for PowerPC, enabling parallel processing of single-precision floating-point operations.",
+		"qpx", "Quad Processing eXtensions (QPX): SIMD extension for PowerPC, designed for high-performance computing and vector operations.",
+		0
+	};
+	return cpu_desc;
+}
+
 RzAsmPlugin rz_asm_plugin_ppc_cs = {
 	.name = "ppc",
 	.desc = "Capstone PowerPC disassembler",
@@ -129,6 +140,7 @@ RzAsmPlugin rz_asm_plugin_ppc_cs = {
 	.fini = ppc_asm_fini,
 	.disassemble = &ppc_disassemble,
 	.mnemonics = ppc_asm_mnemonics,
+	.get_cpu_desc = ppc_cpu_descriptions,
 };
 
 #ifndef RZ_PLUGIN_INCORE

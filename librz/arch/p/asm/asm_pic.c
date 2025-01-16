@@ -21,6 +21,19 @@ static int asm_pic_disassemble(RzAsm *a, RzAsmOp *op, const ut8 *b, int l) {
 	return op->size = res;
 }
 
+char **pic_cpu_descriptions() {
+	static char *cpu_desc[] = {
+		"pic18", "PIC18: High-performance 8-bit microcontroller family with enhanced instruction set and advanced peripherals.",
+		"pic16", "PIC16: Mid-range 8-bit microcontroller family, widely used for general-purpose applications.",
+		"pic14", "PIC14: 14-bit instruction set microcontroller family, offering a balance of performance and simplicity.",
+		"highend", "High-End: Advanced microcontroller family with rich features and high processing capabilities.",
+		"midrange", "Mid-Range: Microcontroller family designed for moderate complexity applications with cost-effectiveness.",
+		"baseline", "Baseline: Entry-level microcontroller family with minimal features for basic applications.",
+		0
+	};
+	return cpu_desc;
+}
+
 RzAsmPlugin rz_asm_plugin_pic = {
 	.name = "pic",
 	.arch = "pic",
@@ -28,7 +41,8 @@ RzAsmPlugin rz_asm_plugin_pic = {
 	.bits = 16 | 32,
 	.license = "LGPL3",
 	.desc = "PIC disassembler",
-	.disassemble = &asm_pic_disassemble
+	.disassemble = &asm_pic_disassemble,
+	.get_cpu_desc = pic_cpu_descriptions,
 };
 
 #ifndef RZ_PLUGIN_INCORE

@@ -219,6 +219,41 @@ RZ_API RzCmdStatus rz_core_asm_plugins_print(RZ_NONNULL RZ_BORROW RzCore *core, 
 	return RZ_CMD_STATUS_OK;
 }
 
+RZ_API RzCmdStatus rz_core_cpu_descs_print(RZ_NONNULL RzCore *core, RZ_NONNULL const char *plugin) {
+	rz_return_val_if_fail(core && plugin, RZ_CMD_STATUS_ERROR);
+	int i;
+	RzAsm *a = core->rasm;
+	RzIterator *iter = ht_sp_as_iter(a->plugins);
+	RzList *plugin_list = rz_list_new_from_iterator(iter);
+	if (!plugin_list) {
+		rz_iterator_free(iter);
+		return RZ_CMD_STATUS_ERROR;
+	}
+	rz_list_sort(plugin_list, (RzListComparator)rz_asm_plugin_cmp, NULL);
+	RzListIter *it;
+	RzAsmPlugin *ap;
+	RzCmdStatus status;
+	rz_list_foreach (plugin_list, it, ap) {
+		if (ap->cpus && !strcmp(plugin, ap->name)) {
+			const char **desc = ap->get_cpu_desc();
+			if (desc) {
+				for (size_t i = 0; desc[i] != NULL; i += 2) {
+					// rz_cons_println(desc[i]);
+					// rz_cons_print(desc[i + 1]);
+
+					rz_cons_printf("%-10s %s", desc[i], desc[i + 1]);
+					rz_cons_newline();
+				}
+				break;
+			} else {
+				rz_cons_println("helo");
+			}
+		}
+	}
+
+	return RZ_CMD_STATUS_OK;
+}
+
 // TODO: add support for byte-per-byte opcode search
 RZ_API RzList /*<RzCoreAsmHit *>*/ *rz_core_asm_strsearch(RzCore *core, const char *input, ut64 from, ut64 to, int maxhits, int regexp, int everyByte, int mode) {
 	RzCoreAsmHit *hit;

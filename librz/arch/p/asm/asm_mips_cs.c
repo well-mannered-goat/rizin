@@ -93,6 +93,45 @@ static int mips_assemble(RzAsm *a, RzAsmOp *op, const char *str) {
 	return ret;
 }
 
+char **mips_cpu_descriptions() {
+	static char *cpu_desc[] = {
+		"mips3", "MIPS III: 64-bit architecture introduced in R4000, supporting advanced memory management.",
+		"mips1", "MIPS I: First-generation 32-bit architecture, simple and efficient RISC design.",
+		"mips2", "MIPS II: Enhanced 32-bit architecture with additional instructions for improved performance.",
+		"mips32r2", "MIPS32 Release 2: 32-bit architecture with improved DSP support and enhanced instructions.",
+		"mips32r3", "MIPS32 Release 3: 32-bit architecture focusing on embedded systems and efficiency.",
+		"mips32r5", "MIPS32 Release 5: Advanced 32-bit architecture with enhanced virtualization and security features.",
+		"mips32r6", "MIPS32 Release 6: Latest 32-bit architecture, optimized for performance and power efficiency.",
+		"mips4", "MIPS IV: 64-bit architecture introduced in R8000, targeting high-performance computing.",
+		"mips5", "MIPS V: 64-bit architecture with advanced multimedia instructions for digital signal processing.",
+		"mips64r2", "MIPS64 Release 2: 64-bit architecture with support for high-performance and embedded applications.",
+		"mips64r3", "MIPS64 Release 3: Advanced 64-bit architecture optimized for embedded systems.",
+		"mips64r5", "MIPS64 Release 5: High-performance 64-bit architecture with enhanced security features.",
+		"mips64r6", "MIPS64 Release 6: Latest 64-bit architecture, offering improved power efficiency and performance.",
+		"octeon", "OCTEON: Specialized MIPS architecture for Cavium's multi-core processors, targeting networking.",
+		"octeonp", "OCTEON+ : Enhanced version of OCTEON architecture with additional cores and improved performance.",
+		"nanomips", "NanoMIPS: Compact instruction set designed for embedded systems and power-sensitive applications.",
+		"nms1", "NanoMIPS Release 1: Initial release of the NanoMIPS architecture for low-power devices.",
+		"i7200", "i7200: MIPS architecture optimized for high-performance embedded applications.",
+		"micromips", "microMIPS: Compact version of MIPS architecture for reduced code size and power consumption.",
+		"micro32r3", "microMIPS32 Release 3: Compact 32-bit architecture optimized for embedded systems.",
+		"micro32r6", "microMIPS32 Release 6: Latest compact 32-bit architecture with enhanced performance.",
+		"r2300", "R2300: Early MIPS processor for workstations, based on the MIPS I architecture.",
+		"r2600", "R2600: MIPS processor with improved performance, based on MIPS II architecture.",
+		"r2800", "R2800: High-performance MIPS processor with support for advanced applications.",
+		"r2000a", "R2000A: Enhanced version of the R2000, MIPS I processor with minor improvements.",
+		"r2000", "R2000: First commercial MIPS processor, based on the MIPS I architecture.",
+		"r3000a", "R3000A: Enhanced version of the R3000, supporting higher clock speeds and improved memory management.",
+		"r3000", "R3000: Second-generation MIPS processor, introducing improved performance and efficiency.",
+		"r10000", "R10000: High-performance MIPS processor with out-of-order execution and advanced caching.",
+		"noptr64", "NoPtr64: MIPS configuration without support for 64-bit pointers, targeting specific use cases.",
+		"nofloat", "NoFloat: MIPS configuration without floating-point unit, designed for cost-sensitive applications.",
+		0
+	};
+
+	return cpu_desc;
+}
+
 RzAsmPlugin rz_asm_plugin_mips_cs = {
 	.name = "mips",
 	.desc = "Capstone MIPS disassembler",
@@ -105,7 +144,8 @@ RzAsmPlugin rz_asm_plugin_mips_cs = {
 	.fini = mips_asm_fini,
 	.disassemble = &mips_disassemble,
 	.mnemonics = mips_asm_mnemonics,
-	.assemble = &mips_assemble
+	.assemble = &mips_assemble,
+	.get_cpu_desc = mips_cpu_descriptions,
 };
 
 #ifndef RZ_PLUGIN_INCORE
