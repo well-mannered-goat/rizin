@@ -105,8 +105,8 @@ static bool fini(void *u) {
 
 char **tricore_cpu_descriptions() {
 	static char *cpu_desc[] = {
-		"tricore", "TriCore: A 32-bit and 64-bit architecture developed by Infineon, designed for automotive, industrial, and embedded applications with a focus on real-time processing and high performance.",
-		0
+		"tricore", "TriCore: A generic tricore cpu developed by Infineon",
+		NULL
 	};
 	return cpu_desc;
 }

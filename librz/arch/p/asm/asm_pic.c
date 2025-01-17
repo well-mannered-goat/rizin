@@ -23,13 +23,13 @@ static int asm_pic_disassemble(RzAsm *a, RzAsmOp *op, const ut8 *b, int l) {
 
 char **pic_cpu_descriptions() {
 	static char *cpu_desc[] = {
-		"pic18", "PIC18: High-performance 8-bit microcontroller family with enhanced instruction set and advanced peripherals.",
-		"pic16", "PIC16: Mid-range 8-bit microcontroller family, widely used for general-purpose applications.",
-		"pic14", "PIC14: 14-bit instruction set microcontroller family, offering a balance of performance and simplicity.",
-		"highend", "High-End: Advanced microcontroller family with rich features and high processing capabilities.",
-		"midrange", "Mid-Range: Microcontroller family designed for moderate complexity applications with cost-effectiveness.",
-		"baseline", "Baseline: Entry-level microcontroller family with minimal features for basic applications.",
-		0
+		"pic18", "PIC18: High-performance 8-bit microcontroller family",
+		"pic16", "PIC16: Mid-range 8-bit microcontroller family",
+		"pic14", "PIC14: 14-bit instruction set microcontroller family",
+		"highend", "Alias for PIC18",
+		"midrange", "Alias for PIC16",
+		"baseline", "Alias for PIC14",
+		NULL
 	};
 	return cpu_desc;
 }

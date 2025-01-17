@@ -118,11 +118,11 @@ static int ppc_disassemble(RzAsm *a, RzAsmOp *op, const ut8 *buf, int len) {
 
 char **ppc_cpu_descriptions() {
 	static char *cpu_desc[] = {
-		"ppc", "PowerPC: High-performance RISC architecture used in embedded systems, servers, and workstations.",
-		"vle", "Variable Length Encoding (VLE): Compact instruction set extension for PowerPC, optimizing code size.",
-		"ps", "Paired Single (PS): SIMD extension for PowerPC, enabling parallel processing of single-precision floating-point operations.",
-		"qpx", "Quad Processing eXtensions (QPX): SIMD extension for PowerPC, designed for high-performance computing and vector operations.",
-		0
+		"ppc", "PowerPC: Uses RISC architecture",
+		"vle", "PowerPC e200: 32-bit Power ISA microprocessors having VLE (Variable Lenght Encoding)",
+		"ps", "Paired Single (PS): SIMD extension for PowerPC particularly for 750CL processors",
+		"qpx", "Quad Processing eXtensions (QPX): Advancement in PowerPC to support in quad-core configuration",
+		NULL
 	};
 	return cpu_desc;
 }

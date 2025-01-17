@@ -31,10 +31,10 @@ beach:
 
 char **xtensa_cpu_descriptions() {
 	static char *cpu_desc[] = {
-		"esp32", "32-bit microcontroller with Wi-Fi and Bluetooth capabilities, designed for high-performance applications.",
-		"esp32s2", "32-bit microcontroller with Wi-Fi and USB OTG support, optimized for low-power and IoT applications.",
-		"esp8266", "Low-cost 32-bit microcontroller with Wi-Fi support, commonly used in IoT projects and embedded systems.",
-		0
+		"esp32", "Xtensa microcontroller with Wi-Fi and Bluetooth capabilities",
+		"esp32s2", "Xtensa microcontroller with Wi-Fi and USB OTG support",
+		"esp8266", "Xtensa microcontroller with Wi-Fi support",
+		NULL
 	};
 	return cpu_desc;
 }

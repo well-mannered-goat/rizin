@@ -81,17 +81,17 @@ static int m680x_disassemble(RzAsm *a, RzAsmOp *op, const ut8 *buf, int len) {
 
 char **m680x_cpu_descriptions() {
 	static char *cpu_desc[] = {
-		"6800", "Motorola 6800: 8-bit microprocessor, one of the earliest commercially successful microprocessors.",
+		"6800", "Motorola 6800: 8-bit microprocessor launched in 1974",
 		"6801", "Motorola 6801: Enhanced version of the 6800 with additional features like on-chip RAM and timers.",
-		"6805", "Motorola 6805: 8-bit microcontroller family designed for embedded systems and low-power applications.",
-		"6808", "Motorola 6808: Variant of the 6800 microprocessor with simplified features for cost-sensitive applications.",
-		"6809", "Motorola 6809: Advanced 8-bit microprocessor with support for position-independent code and rich instruction set.",
-		"6811", "Motorola 6811: 8-bit microcontroller with integrated peripherals, widely used in automotive and industrial applications.",
-		"cpu12", "Motorola CPU12: 16-bit microcontroller family, successor to the 6811, with enhanced performance and features.",
-		"6301", "Hitachi 6301: 8-bit microcontroller compatible with the Motorola 6800, used in embedded systems.",
-		"6309", "Hitachi 6309: Enhanced version of the 6809 with additional instructions and improved performance.",
-		"hcs08", "Freescale HCS08: 8-bit microcontroller family based on the 6805, designed for low-power and cost-sensitive applications.",
-		0
+		"6805", "Motorola 68HC05: 8-bit microcontroller",
+		"6808", "Motorola 6808: Variant of the 6800 microprocessor",
+		"6809", "Motorola 6809: Advanced 8-bit microprocessor",
+		"6811", "Motorola 68HC11: 8-bit microcontroller (also abbreviated as 6811 or HC11)",
+		"cpu12", "Motorola 68HC12: 16-bit microcontroller (also abbreviated as 6812 or HC12)",
+		"6301", "Hitachi 6301: 8-bit microcontroller, CMOS version of 6800",
+		"6309", "Hitachi 6309: CMOS version of 6809",
+		"hcs08", "Freescale HCS08: 8-bit microcontroller family",
+		NULL
 	};
 	return cpu_desc;
 }

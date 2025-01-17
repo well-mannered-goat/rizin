@@ -287,12 +287,12 @@ static char *mnemonics(RzAsm *a, int id, bool json) {
 
 char **arm_cpu_descriptions() {
 	static char *cpu_desc[] = {
-		"v8", "ARMv8 architecture, offering 64-bit processing, enhanced security, and power efficiency.",
-		"cortexm", "ARM Cortex-M series, designed for low-power, real-time embedded systems.",
-		"arm1176", "ARM1176JZ(F)-S, a 32-bit RISC processor supporting ARMv6 architecture with multimedia enhancements.",
-		"cortexA72", "High-performance ARM Cortex-A72 processor, optimized for mobile and embedded systems.",
-		"cortexA8", "ARM Cortex-A8, a 32-bit processor offering high efficiency and performance for consumer electronics.",
-		0
+		"v8", "ARMv8 architecture, RISC processor following 32-bit or 64-bit architecture",
+		"cortexm", "ARM Cortex-M series, 32-bit RISC ARM processor cores",
+		"arm1176", "ARM1176JZ(F)-S, a 32-bit RISC processor core supporting ARMv6 architecture",
+		"cortexA72", "ARM Cortex-A72 processor, implementing ARMv8-A 64-bit instruction set",
+		"cortexA8", "ARM Cortex-A8, a 32-bit processor implementing ARMv7-A architecture",
+		NULL
 	};
 	return cpu_desc;
 }

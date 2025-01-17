@@ -117,13 +117,13 @@ beach:
 
 char **m68k_cpu_descriptions() {
 	static char *cpu_desc[] = {
-		"68000", "Motorola 68000: 16/32-bit CISC microprocessor, widely used in early computers like the Apple Macintosh and Amiga.",
-		"68010", "Motorola 68010: Enhanced version of the 68000 with support for virtual memory and improved instruction set.",
-		"68020", "Motorola 68020: Full 32-bit microprocessor with improved performance and added instructions for advanced applications.",
-		"68030", "Motorola 68030: Enhanced 32-bit microprocessor with integrated MMU, ideal for multitasking systems.",
-		"68040", "Motorola 68040: High-performance 32-bit microprocessor with integrated FPU and improved cache system.",
-		"68060", "Motorola 68060: Most advanced 68k processor with superscalar architecture and higher clock speeds.",
-		0
+		"68000", "Motorola 68000: 16/32-bit CISC microprocessor",
+		"68010", "Motorola 68010: 16/32-bit microprocessors. Successor to Motoroloa 68000",
+		"68020", "Motorola 68020: 32-bit microprocessor with added instructions and additional addressing modes",
+		"68030", "Motorola 68030: Enhanced 32-bit microprocessor with integrated MMU",
+		"68040", "Motorola 68040: High-performance 32-bit microprocessor with integrated FPU",
+		"68060", "Motorola 68060: 32-bit microprocessor, highest performer in m68k series",
+		NULL
 	};
 	return cpu_desc;
 }

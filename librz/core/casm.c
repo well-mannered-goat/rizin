@@ -236,7 +236,7 @@ RZ_API RzCmdStatus rz_core_cpu_descs_print(RZ_NONNULL RzCore *core, RZ_NONNULL c
 			char **desc = ap->get_cpu_desc();
 			if (desc) {
 				for (size_t i = 0; desc[i] != NULL; i += 2) {
-					rz_cons_printf("%-10s %s", desc[i], desc[i + 1]);
+					rz_cons_printf("%-15s %s", desc[i], desc[i + 1]);
 					rz_cons_newline();
 				}
 				break;

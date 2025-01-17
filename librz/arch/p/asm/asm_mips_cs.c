@@ -124,9 +124,9 @@ char **mips_cpu_descriptions() {
 		"r3000a", "R3000A: Enhanced version of the R3000, supporting higher clock speeds and improved memory management.",
 		"r3000", "R3000: Second-generation MIPS processor, introducing improved performance and efficiency.",
 		"r10000", "R10000: High-performance MIPS processor with out-of-order execution and advanced caching.",
-		"noptr64", "NoPtr64: MIPS configuration without support for 64-bit pointers, targeting specific use cases.",
-		"nofloat", "NoFloat: MIPS configuration without floating-point unit, designed for cost-sensitive applications.",
-		0
+		"noptr64", "Special MIPS configuration to disable support for 64-bit pointers",
+		"nofloat", "Special MIPS configuration to disable support for floating-points",
+		NULL
 	};
 
 	return cpu_desc;
