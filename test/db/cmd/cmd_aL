@@ -1,0 +1,118 @@
+NAME=List all asm/analysis plugins (e asm.arch=?)
+FILE==
+CMDS=aL
+EXPECT=<<EOF
+_dAeI 8 16       6502        LGPL3   6502/NES/C64/Tamagotchi/T-1000 CPU
+adAeI 8          8051        PD      8051 Intel CPU
+_dA__ 64         alpha       LGPL3   Capstone Alpha disassembler
+_dA__ 32         amd29k      LGPL3   AMD 29k RISC CPU (by deroad)
+_dA__ 16 32      arc         GPL3    Argonaut RISC Core
+adAeI 16 32 64   arm         BSD     Capstone ARM disassembler
+a____ 16 32 64   arm.as      LGPL3   as ARM Assembler (use RZ_ARM32_AS and RZ_ARM64_AS environment) (by pancake)
+adAeI 8 16       avr         LGPL3   AVR Atmel
+adA_I 16 32 64   bf          LGPL3   Brainfuck (by pancake, nibble) v4.0.0
+_dA__ 32         chip8       LGPL3   Chip8 disassembler
+_dA__ 16 32 64   cil         LGPL3   .NET Common Intermediate Language
+_dA__ 16         cr16        LGPL3   cr16 disassembly plugin
+_dA__ 32         cris        GPL3    Axis Communications 32-bit embedded processor (by pancake)
+adA__ 32 64      dalvik      LGPL3   AndroidVM Dalvik
+ad___ 16         dcpu16      PD      Mojang's DCPU-16
+_dA__ 32 64      ebc         LGPL3   EFI Bytecode (by Fedor Sakharov)
+adAeI 16         gb          LGPL3   GameBoy(TM) (z80-like) (by condret)
+_dAe_ 16         h8300       LGPL3   H8/300 disassembly plugin
+_dA_I 32         hexagon     LGPL3   Qualcomm Hexagon (QDSP6) V6 (by Rot127)
+_d___ 32         hppa        GPL3    HP PA-RISC
+_dA__ 4          i4004       LGPL3   Intel 4004 microprocessor
+_dA__ 8          i8080       BSD     Intel 8080 CPU
+adA__ 32         java        LGPL-3  Java bytecode disassembler (by deroad)
+_d___ 32         lanai       GPL3    LANAI
+_d___ 8          lh5801      LGPL3   SHARP LH5801 disassembler
+_d___ 32         lm32        BSD     disassembly plugin for Lattice Micro 32 ISA (by Felix Held)
+_dA__ 32 64      loongarch   LGPL3   Capstone Alpha disassembler
+adA__ 8          luac        LGPL3   luac disassemble plugin
+_dA__ 8 32       m680x       BSD     Capstone M680X Disassembler
+_dA__ 32         m68k        BSD     Capstone M68K disassembler
+_dA__ 32         malbolge    LGPL3   Malbolge Ternary VM (by condret)
+_dA__ 32         mcore       LGPL3   Motorola MCORE disassembler
+_d___ 16         mcs96       LGPL3   condrets car
+adAe_ 16 32 64   mips        BSD     Capstone MIPS disassembler
+_dA_I 16         msp430      LGPL3   msp430 disassembly plugin
+adA__ 16 32 64   null        MIT     no disassemble (by pancake) v1.0.0
+_dA__ 32         or1k        LGPL3   OpenRISC 1000
+_dAeI 16 32      pic         LGPL3   PIC disassembler
+_dAeI 32 64      ppc         BSD     Capstone PowerPC disassembler (by pancake)
+a____ 32 64      ppc.as      LGPL3   as PPC Assembler (use RZ_PPC_AS environment) (by eagleoflqj)
+_dA__ 32         propeller   LGPL3   propeller disassembly plugin
+_dA__ 8 16       pyc         LGPL3   PYC disassemble plugin
+_dAe_ 32 64      riscv       GPL3    RISC-V
+_dAe_ 32 64      riscv.cs    BSD     Capstone RISCV disassembler
+adA__ 32         rl78        LGPL3   Renesas RL78 disassembler (by Bastian Engel)
+_dA__ 32         rsp         LGPL3   Reality Signal Processor
+_dA__ 32         rx          LGPL3   Renesas RX Family disassembler (by Heersin)
+adAeI 32         sh          LGPL3   SuperH-4 CPU (by DMaroo)
+_dA__ 8 16       snes        LGPL3   SuperNES CPU
+_dA__ 32 64      sparc       BSD     Capstone SPARC disassembler
+_dA__ 32 64      sparc.gnu   GPL3    Scalable Processor Architecture
+_dA__ 16         spc700      LGPL3   spc700, snes' sound-chip
+_dA__ 32 64      sysz        BSD     SystemZ CPU disassembler
+_dA__ 32         tms320      LGPL3   TMS320 DSP family (c54x,c55x,c55x+,c64x)
+_dA_I 32         tricore     BSD     Siemens TriCore CPU (by billow)
+_dAeI 32         v810        LGPL3   v810 disassembly plugin (by pancake)
+_dAeI 32         v850        LGPL3   v850 disassembly plugin
+_dA__ 8 32       vax         GPL3    VAX
+adA__ 32         wasm        MIT     WebAssembly (by cgvwzq) v0.1.0
+_dAeI 16 32 64   x86         BSD     Capstone X86 disassembler
+a____ 16 32 64   x86.as      LGPL3   Intel X86 GNU Assembler (Use RZ_X86_AS env)
+a____ 16 32 64   x86.nasm    LGPL3   X86 nasm assembler
+a____ 16 32 64   x86.nz      LGPL3   x86 handmade assembler
+_dA__ 16         xap         PD      XAP4 RISC (CSR)
+_dA__ 32         xcore       BSD     Capstone XCore disassembler (by pancake)
+_dAeI 32         xtensa      LGPL3   Capstone Xtensa disassembly plugin (by billow)
+adA__ 8          z80         GPL3    Zilog Z80 (by condret)
+EOF
+RUN
+
+NAME=Show details of CPU for a specific plugin
+FILE==
+CMDS=<<EOF
+aLc mips
+aLc xtensa
+EOF
+EXPECT=<<EOF
+mips3      MIPS III: 64-bit architecture introduced in R4000, supporting advanced memory management.
+mips1      MIPS I: First-generation 32-bit architecture, simple and efficient RISC design.
+mips2      MIPS II: Enhanced 32-bit architecture with additional instructions for improved performance.
+mips32r2   MIPS32 Release 2: 32-bit architecture with improved DSP support and enhanced instructions.
+mips32r3   MIPS32 Release 3: 32-bit architecture focusing on embedded systems and efficiency.
+mips32r5   MIPS32 Release 5: Advanced 32-bit architecture with enhanced virtualization and security features.
+mips32r6   MIPS32 Release 6: Latest 32-bit architecture, optimized for performance and power efficiency.
+mips4      MIPS IV: 64-bit architecture introduced in R8000, targeting high-performance computing.
+mips5      MIPS V: 64-bit architecture with advanced multimedia instructions for digital signal processing.
+mips64r2   MIPS64 Release 2: 64-bit architecture with support for high-performance and embedded applications.
+mips64r3   MIPS64 Release 3: Advanced 64-bit architecture optimized for embedded systems.
+mips64r5   MIPS64 Release 5: High-performance 64-bit architecture with enhanced security features.
+mips64r6   MIPS64 Release 6: Latest 64-bit architecture, offering improved power efficiency and performance.
+octeon     OCTEON: Specialized MIPS architecture for Cavium's multi-core processors, targeting networking.
+octeonp    OCTEON+ : Enhanced version of OCTEON architecture with additional cores and improved performance.
+nanomips   NanoMIPS: Compact instruction set designed for embedded systems and power-sensitive applications.
+nms1       NanoMIPS Release 1: Initial release of the NanoMIPS architecture for low-power devices.
+i7200      i7200: MIPS architecture optimized for high-performance embedded applications.
+micromips  microMIPS: Compact version of MIPS architecture for reduced code size and power consumption.
+micro32r3  microMIPS32 Release 3: Compact 32-bit architecture optimized for embedded systems.
+micro32r6  microMIPS32 Release 6: Latest compact 32-bit architecture with enhanced performance.
+r2300      R2300: Early MIPS processor for workstations, based on the MIPS I architecture.
+r2600      R2600: MIPS processor with improved performance, based on MIPS II architecture.
+r2800      R2800: High-performance MIPS processor with support for advanced applications.
+r2000a     R2000A: Enhanced version of the R2000, MIPS I processor with minor improvements.
+r2000      R2000: First commercial MIPS processor, based on the MIPS I architecture.
+r3000a     R3000A: Enhanced version of the R3000, supporting higher clock speeds and improved memory management.
+r3000      R3000: Second-generation MIPS processor, introducing improved performance and efficiency.
+r10000     R10000: High-performance MIPS processor with out-of-order execution and advanced caching.
+noptr64    NoPtr64: MIPS configuration without support for 64-bit pointers, targeting specific use cases.
+nofloat    NoFloat: MIPS configuration without floating-point unit, designed for cost-sensitive applications.
+esp32      32-bit microcontroller with Wi-Fi and Bluetooth capabilities, designed for high-performance applications.
+esp32s2    32-bit microcontroller with Wi-Fi and USB OTG support, optimized for low-power and IoT applications.
+esp8266    Low-cost 32-bit microcontroller with Wi-Fi support, commonly used in IoT projects and embedded systems.
+EOF
+RUN
+

@@ -221,7 +221,6 @@ RZ_API RzCmdStatus rz_core_asm_plugins_print(RZ_NONNULL RZ_BORROW RzCore *core, 
 
 RZ_API RzCmdStatus rz_core_cpu_descs_print(RZ_NONNULL RzCore *core, RZ_NONNULL const char *plugin) {
 	rz_return_val_if_fail(core && plugin, RZ_CMD_STATUS_ERROR);
-	int i;
 	RzAsm *a = core->rasm;
 	RzIterator *iter = ht_sp_as_iter(a->plugins);
 	RzList *plugin_list = rz_list_new_from_iterator(iter);
@@ -232,21 +231,17 @@ RZ_API RzCmdStatus rz_core_cpu_descs_print(RZ_NONNULL RzCore *core, RZ_NONNULL c
 	rz_list_sort(plugin_list, (RzListComparator)rz_asm_plugin_cmp, NULL);
 	RzListIter *it;
 	RzAsmPlugin *ap;
-	RzCmdStatus status;
 	rz_list_foreach (plugin_list, it, ap) {
 		if (ap->cpus && !strcmp(plugin, ap->name)) {
-			const char **desc = ap->get_cpu_desc();
+			char **desc = ap->get_cpu_desc();
 			if (desc) {
 				for (size_t i = 0; desc[i] != NULL; i += 2) {
-					// rz_cons_println(desc[i]);
-					// rz_cons_print(desc[i + 1]);
-
 					rz_cons_printf("%-10s %s", desc[i], desc[i + 1]);
 					rz_cons_newline();
 				}
 				break;
 			} else {
-				rz_cons_println("helo");
+				return RZ_CMD_STATUS_ERROR;
 			}
 		}
 	}
