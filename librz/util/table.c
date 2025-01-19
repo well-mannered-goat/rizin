@@ -148,6 +148,9 @@ RZ_API void rz_table_add_column(RzTable *t, RzTableColumnType *type, const char 
 		int itemLength = rz_str_len_utf8_ansi(name) + 1;
 		c->width = itemLength;
 		c->total = -1;
+		if (c->type == &rz_table_type_number) {
+			c->align = RZ_TABLE_ALIGN_RIGHT;
+		}
 		rz_vector_push(t->cols, c);
 	}
 	RZ_FREE(c);
@@ -407,7 +410,8 @@ static int __strbuf_append_col_aligned_fancy(RzTable *t, RzStrBuf *sb, RzTableCo
 		rz_strbuf_appendf(sb, "%*s", pad, "");
 		break;
 	case RZ_TABLE_ALIGN_RIGHT:
-		rz_strbuf_appendf(sb, "%s%*s%*s", v_line, pad, " ", col->width, str);
+		rz_strbuf_appendf(sb, "%s%*s ", v_line, col->width, str);
+		rz_strbuf_appendf(sb, "%*s", pad, "");
 		break;
 	case RZ_TABLE_ALIGN_CENTER: {
 		pad = (col->width - len) / 2;
@@ -512,40 +516,45 @@ RZ_API RZ_OWN char *rz_table_tofancystring(RZ_NONNULL RzTable *t) {
 
 static int __strbuf_append_col_aligned(RzStrBuf *sb, RzTableColumn *col, const char *str, bool nopad) {
 	int ll = rz_strbuf_length(sb);
-	if (nopad) {
-		rz_strbuf_appendf(sb, "%s", str);
-	} else {
-		char *pad = "";
-		int padlen = 0;
-		int len1 = rz_str_len_utf8(str);
-		int len2 = rz_str_len_utf8_ansi(str);
+	char *pad = "";
+	int padlen = 0;
+	int len1 = rz_str_len_utf8(str);
+	int len2 = rz_str_len_utf8_ansi(str);
+	if (!nopad) {
 		if (len1 > len2) {
 			if (len2 < col->width) {
 				padlen = col->width - len2;
 			}
 		}
-		switch (col->align) {
-		case RZ_TABLE_ALIGN_LEFT:
+	}
+	switch (col->align) {
+	case RZ_TABLE_ALIGN_LEFT:
+		if (nopad) {
+			rz_strbuf_appendf(sb, "%s", str);
+		} else {
 			pad = rz_str_repeat(" ", padlen);
 			rz_strbuf_appendf(sb, "%-*s%s", col->width, str, pad);
 			free(pad);
-			break;
-		case RZ_TABLE_ALIGN_RIGHT:
-			pad = rz_str_repeat(" ", padlen);
-			rz_strbuf_appendf(sb, "%s%*s ", pad, col->width, str);
-			free(pad);
-			break;
-		case RZ_TABLE_ALIGN_CENTER: {
-			int pad = (col->width - len2) / 2;
-			int left = col->width - (pad * 2 + len2);
-			rz_strbuf_appendf(sb, "%-*s", pad, " ");
-			rz_strbuf_appendf(sb, "%-*s ", pad + left, str);
-			break;
 		}
-		default:
-			rz_warn_if_reached();
-			break;
+		break;
+	case RZ_TABLE_ALIGN_RIGHT:
+		if (!nopad) {
+			padlen++;
 		}
+		pad = rz_str_repeat(" ", padlen);
+		rz_strbuf_appendf(sb, "%*s%s", col->width - 1, str, pad);
+		free(pad);
+		break;
+	case RZ_TABLE_ALIGN_CENTER: {
+		int pad = (col->width - len2) / 2;
+		int left = col->width - (pad * 2 + len2);
+		rz_strbuf_appendf(sb, "%-*s", pad, " ");
+		rz_strbuf_appendf(sb, "%-*s ", pad + left, str);
+		break;
+	}
+	default:
+		rz_warn_if_reached();
+		break;
 	}
 	return rz_strbuf_length(sb) - ll;
 }
