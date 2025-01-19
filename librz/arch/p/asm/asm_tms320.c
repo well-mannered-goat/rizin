@@ -63,10 +63,10 @@ static char *tms320_mnemonics(RzAsm *a, int id, bool json) {
 
 char **tms320_cpu_descriptions() {
 	static char *cpu_desc[] = {
-		"c54x", "Texas Instruments TMS320C54x: 16-bit DSP architecture",
-		"c55x", "Texas Instruments TMS320C55x: 16-bit DSP family, runs c54z code but adds more internal parallelism",
-		"c55x+", "Texas Instruments TMS320C55x+: Enhanced version of the C55x DSP",
-		"c64x", "Texas Instruments TMS320C64x: 32-bit DSP architecture",
+		"c54x", "Texas Instruments TMS320C54x DSP family",
+		"c55x", "Texas Instruments TMS320C55x DSP family",
+		"c55x+", "Texas Instruments TMS320C55x+ DSP family",
+		"c64x", "Texas Instruments TMS320C64x DSP family",
 		NULL
 	};
 	return cpu_desc;

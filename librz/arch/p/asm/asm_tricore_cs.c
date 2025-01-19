@@ -105,7 +105,7 @@ static bool fini(void *u) {
 
 char **tricore_cpu_descriptions() {
 	static char *cpu_desc[] = {
-		"tricore", "TriCore: A generic tricore cpu developed by Infineon",
+		"tricore", "Generic TriCore CPU family by Infineon"
 		NULL
 	};
 	return cpu_desc;

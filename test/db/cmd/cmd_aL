@@ -79,35 +79,35 @@ aLc mips
 aLc xtensa
 EOF
 EXPECT=<<EOF
-mips3           MIPS III: 64-bit architecture introduced in R4000, supporting advanced memory management.
-mips1           MIPS I: First-generation 32-bit architecture, simple and efficient RISC design.
-mips2           MIPS II: Enhanced 32-bit architecture with additional instructions for improved performance.
-mips32r2        MIPS32 Release 2: 32-bit architecture with improved DSP support and enhanced instructions.
-mips32r3        MIPS32 Release 3: 32-bit architecture focusing on embedded systems and efficiency.
-mips32r5        MIPS32 Release 5: Advanced 32-bit architecture with enhanced virtualization and security features.
-mips32r6        MIPS32 Release 6: Latest 32-bit architecture, optimized for performance and power efficiency.
-mips4           MIPS IV: 64-bit architecture introduced in R8000, targeting high-performance computing.
-mips5           MIPS V: 64-bit architecture with advanced multimedia instructions for digital signal processing.
-mips64r2        MIPS64 Release 2: 64-bit architecture with support for high-performance and embedded applications.
-mips64r3        MIPS64 Release 3: Advanced 64-bit architecture optimized for embedded systems.
-mips64r5        MIPS64 Release 5: High-performance 64-bit architecture with enhanced security features.
-mips64r6        MIPS64 Release 6: Latest 64-bit architecture, offering improved power efficiency and performance.
-octeon          OCTEON: Specialized MIPS architecture for Cavium's multi-core processors, targeting networking.
-octeonp         OCTEON+ : Enhanced version of OCTEON architecture with additional cores and improved performance.
-nanomips        NanoMIPS: Compact instruction set designed for embedded systems and power-sensitive applications.
-nms1            NanoMIPS Release 1: Initial release of the NanoMIPS architecture for low-power devices.
-i7200           i7200: MIPS architecture optimized for high-performance embedded applications.
-micromips       microMIPS: Compact version of MIPS architecture for reduced code size and power consumption.
-micro32r3       microMIPS32 Release 3: Compact 32-bit architecture optimized for embedded systems.
-micro32r6       microMIPS32 Release 6: Latest compact 32-bit architecture with enhanced performance.
-r2300           R2300: Early MIPS processor for workstations, based on the MIPS I architecture.
-r2600           R2600: MIPS processor with improved performance, based on MIPS II architecture.
-r2800           R2800: High-performance MIPS processor with support for advanced applications.
-r2000a          R2000A: Enhanced version of the R2000, MIPS I processor with minor improvements.
-r2000           R2000: First commercial MIPS processor, based on the MIPS I architecture.
-r3000a          R3000A: Enhanced version of the R3000, supporting higher clock speeds and improved memory management.
-r3000           R3000: Second-generation MIPS processor, introducing improved performance and efficiency.
-r10000          R10000: High-performance MIPS processor with out-of-order execution and advanced caching.
+mips3           MIPS III architecture.
+mips1           MIPS I architecture
+mips2           MIPS II architecture
+mips32r2        MIPS32 Release 2 architecture
+mips32r3        MIPS32 Release 3 architecture
+mips32r5        MIPS32 Release 5 architecture
+mips32r6        MIPS32 Release 6 architecture
+mips4           MIPS IV architecture
+mips5           MIPS V architecture
+mips64r2        MIPS64 Release 2 architecture
+mips64r3        MIPS64 Release 3 architecture
+mips64r5        MIPS64 Release 5 architecture
+mips64r6        MIPS64 Release 6 architecture
+octeon          OCTEON architecture (also known as cnMIPS)
+octeonp         OCTEON+ architecture (also known as cnMIPS+)
+nanomips        nanoMIPS architecture
+nms1            nanoMIPS Release 1 architecture
+i7200           nanoMIPS i7200 architecture
+micromips       microMIPS architecture
+micro32r3       microMIPS32 Release 3 architecture
+micro32r6       microMIPS32 Release 6 architecture
+r2300           R2300 MIPS cpu
+r2600           R2600 MIPS cpu
+r2800           R2800 MIPS cpu
+r2000a          R2000A MIPS cpu
+r2000           R2000 MIPS cpu
+r3000a          R3000A MIPS cpu
+r3000           R3000 MIPS cpu
+r10000          R10000 MIPS cpu
 noptr64         Special MIPS configuration to disable support for 64-bit pointers
 nofloat         Special MIPS configuration to disable support for floating-points
 esp32           Xtensa microcontroller with Wi-Fi and Bluetooth capabilities

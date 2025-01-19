@@ -118,10 +118,10 @@ static int ppc_disassemble(RzAsm *a, RzAsmOp *op, const ut8 *buf, int len) {
 
 char **ppc_cpu_descriptions() {
 	static char *cpu_desc[] = {
-		"ppc", "PowerPC: Uses RISC architecture",
-		"vle", "PowerPC e200: 32-bit Power ISA microprocessors having VLE (Variable Lenght Encoding)",
-		"ps", "Paired Single (PS): SIMD extension for PowerPC particularly for 750CL processors",
-		"qpx", "Quad Processing eXtensions (QPX): Advancement in PowerPC to support in quad-core configuration",
+		"ppc", "Generic PowerPC CPU",
+		"vle", "PowerPC with Variable Length Encoding extension",
+		"ps", "PowerPC with Paired Single SIMD extension",
+		"qpx", "PowerPC with Quad Processing eXtensions",
 		NULL
 	};
 	return cpu_desc;
